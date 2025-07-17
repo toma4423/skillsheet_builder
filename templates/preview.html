@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プレビュー - SkillSheet Builder</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/preview.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>スキルシートプレビュー</h1>
+            <nav>
+                <button id="backToEditBtn" class="btn btn-small">編集に戻る</button>
+                <a href="/" class="btn btn-small">トップに戻る</a>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="preview-actions">
+                <button id="downloadXlsxBtn" class="btn btn-primary">XLSX出力</button>
+            </div>
+            
+            <div id="previewContent" class="preview-container">
+                <!-- プレビュー内容はJavaScriptで動的に生成されます -->
+                <div class="loading">プレビューを読み込み中...</div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 SkillSheet Builder</p>
+        </footer>
+    </div>
+    
+    <script src="/static/js/preview.js"></script>
+</body>
+</html>

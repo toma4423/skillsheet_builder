@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSheet Builder</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SkillSheet Builder</h1>
+        </header>
+        
+        <main>
+            <section class="app-description">
+                <h2>ITエンジニア向けスキルシート作成ツール</h2>
+                <p>
+                    このアプリケーションは、ITエンジニアがスキルシートを簡単に作成するためのツールです。
+                    必要な情報を入力するだけで、プロフェッショナルなスキルシートをXLSX形式で出力できます。
+                </p>
+                <div class="disclaimer">
+                    <h3>免責事項</h3>
+                    <p>
+                        このアプリケーションは、入力されたデータをサーバー側に保存しません。
+                        セッション終了後、すべてのデータは破棄されます。
+                        安心してご利用ください。
+                    </p>
+                </div>
+            </section>
+            
+            <section class="action-buttons">
+                <a href="/skillsheet" class="btn btn-primary">新規作成</a>
+                <button id="loadFileBtn" class="btn btn-secondary">ファイルから読み込み</button>
+                <input type="file" id="fileInput" accept=".xlsx" style="display: none;">
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 SkillSheet Builder</p>
+        </footer>
+    </div>
+    
+    <script src="/static/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+[project]
+name = "skillsheet-builder"
+version = "0.1.0"
+description = "ITエンジニア向けスキルシート作成Webアプリケーション"
+authors = [
+    {name = "SkillSheet Builder Team"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+    "jinja2>=3.1.2",
+    "openpyxl>=3.1.2",
+    "python-multipart>=0.0.6",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.3.1",
+    "httpx>=0.24.1",
+    "pytest-cov>=4.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["test_main.py"]

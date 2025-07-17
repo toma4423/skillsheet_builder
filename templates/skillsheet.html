@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スキルシート編集 - SkillSheet Builder</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>スキルシート編集</h1>
+            <nav>
+                <a href="/" class="btn btn-small">トップに戻る</a>
+            </nav>
+        </header>
+        
+        <main>
+            <form id="skillsheetForm">
+                <!-- 基本情報セクション -->
+                <section class="form-section">
+                    <h2>基本情報</h2>
+                    <div class="form-group">
+                        <label for="name">氏名 <span class="required">*</span></label>
+                        <input type="text" id="name" name="basic_info.name" required placeholder="例: 山田 太郎">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kana">ふりがな <span class="required">*</span></label>
+                        <input type="text" id="kana" name="basic_info.kana" required placeholder="例: やまだ たろう">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>性別</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="basic_info.gender" value="男性" checked> 男性</label>
+                            <label><input type="radio" name="basic_info.gender" value="女性"> 女性</label>
+                            <label><input type="radio" name="basic_info.gender" value="その他"> その他</label>
+                            <label><input type="radio" name="basic_info.gender" value="回答しない"> 回答しない</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">年齢</label>
+                        <input type="number" id="age" name="basic_info.age" min="18" max="100" placeholder="例: 30">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nearest_station">最寄駅</label>
+                        <input type="text" id="nearest_station" name="basic_info.nearest_station" placeholder="例: 新宿">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience_years">実務経験（年）</label>
+                        <input type="number" id="experience_years" name="basic_info.experience_years" min="0" max="50" placeholder="例: 5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="self_pr">自己PR</label>
+                        <textarea id="self_pr" name="basic_info.self_pr" rows="5" maxlength="500" placeholder="自己PRを500文字以内で入力してください"></textarea>
+                        <div class="char-count"><span id="self_pr_count">0</span>/500</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="main_technologies">主要技術</label>
+                        <textarea id="main_technologies" name="basic_info.main_technologies" rows="4" maxlength="200" placeholder="主要技術を200文字以内で入力してください（箇条書き推奨）"></textarea>
+                        <div class="char-count"><span id="main_technologies_count">0</span>/200</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="qualifications">保有資格</label>
+                        <textarea id="qualifications" name="basic_info.qualifications" rows="4" maxlength="200" placeholder="保有資格を200文字以内で入力してください（箇条書き推奨）"></textarea>
+                        <div class="char-count"><span id="qualifications_count">0</span>/200</div>
+                    </div>
+                </section>
+                
+                <!-- 対応可能業務セクション -->
+                <section class="form-section">
+                    <h2>対応可能業務</h2>
+                    <div class="task-grid">
+                        <div class="task-item">
+                            <label for="customer_negotiation">顧客折衝</label>
+                            <select id="customer_negotiation" name="possible_tasks.customer_negotiation">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="research_analysis">調査分析</label>
+                            <select id="research_analysis" name="possible_tasks.research_analysis">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="requirement_definition">要件定義</label>
+                            <select id="requirement_definition" name="possible_tasks.requirement_definition">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="basic_design">基本設計</label>
+                            <select id="basic_design" name="possible_tasks.basic_design">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="detailed_design">詳細設計</label>
+                            <select id="detailed_design" name="possible_tasks.detailed_design">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="pg_development">PG開発</label>
+                            <select id="pg_development" name="possible_tasks.pg_development">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="unit_test">単体テスト</label>
+                            <select id="unit_test" name="possible_tasks.unit_test">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="integration_test">結合テスト</label>
+                            <select id="integration_test" name="possible_tasks.integration_test">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="system_maintenance">システム保守</label>
+                            <select id="system_maintenance" name="possible_tasks.system_maintenance">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="nw_design">NW設計</label>
+                            <select id="nw_design" name="possible_tasks.nw_design">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="nw_construction">NW構築</label>
+                            <select id="nw_construction" name="possible_tasks.nw_construction">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="nw_operation">NW運用</label>
+                            <select id="nw_operation" name="possible_tasks.nw_operation">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="sv_design">SV設計</label>
+                            <select id="sv_design" name="possible_tasks.sv_design">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="sv_construction">SV構築</label>
+                            <select id="sv_construction" name="possible_tasks.sv_construction">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                        <div class="task-item">
+                            <label for="sv_operation">SV運用</label>
+                            <select id="sv_operation" name="possible_tasks.sv_operation">
+                                <option value="o">o</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 職務経歴セクション -->
+                <section class="form-section">
+                    <h2>職務経歴</h2>
+                    <div id="careerEntries">
+                        <!-- 職務経歴エントリのテンプレート -->
+                        <div class="career-entry" data-index="0">
+                            <div class="career-header">
+                                <h3>職務経歴 #1</h3>
+                                <button type="button" class="btn btn-danger remove-career" style="display: none;">削除</button>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="start_date_0">業務開始年月 <span class="required">*</span></label>
+                                    <input type="month" id="start_date_0" name="career_history[0].start_date" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="end_date_0">業務終了年月 <span class="required">*</span></label>
+                                    <div class="end-date-container">
+                                        <input type="month" id="end_date_0" name="career_history[0].end_date" required>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="current_job_0" class="current-job-checkbox"> 現在
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="duration_0">業務期間</label>
+                                    <input type="text" id="duration_0" name="career_history[0].duration" readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="overview_0">業務概要（及び業務内容） <span class="required">*</span></label>
+                                <textarea id="overview_0" name="career_history[0].overview" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="position_0">ポジション <span class="required">*</span></label>
+                                    <input type="text" id="position_0" name="career_history[0].position" required placeholder="例: SE, PG, PM, PL">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="scale_members_0">規模（人数）</label>
+                                    <input type="number" id="scale_members_0" name="career_history[0].scale_members" min="1" placeholder="例: 5">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="responsibilities_0">担当業務 <span class="required">*</span></label>
+                                <textarea id="responsibilities_0" name="career_history[0].responsibilities" rows="4" required placeholder="箇条書きで入力することをお勧めします"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tech_environment_0">技術環境</label>
+                                <textarea id="tech_environment_0" name="career_history[0].tech_environment" rows="4" placeholder="例: OS: Linux&#10;言語: Python&#10;FW: FastAPI&#10;DB: PostgreSQL&#10;Cloud: AWS&#10;Tool: Git"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="addCareerBtn" class="btn btn-secondary">経歴追加</button>
+                </section>
+                
+                <div class="form-actions">
+                    <button type="button" id="previewBtn" class="btn btn-primary">プレビュー表示</button>
+                    <a href="/" class="btn btn-secondary">終了</a>
+                </div>
+            </form>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 SkillSheet Builder</p>
+        </footer>
+    </div>
+    
+    <script src="/static/js/skillsheet.js"></script>
+</body>
+</html>

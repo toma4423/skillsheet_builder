@@ -1,0 +1,150 @@
+/* Preview Specific Styles */
+.preview-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+/* Excel-like Table Styles */
+.excel-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.excel-table th,
+.excel-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.excel-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.excel-section {
+    margin-bottom: 2rem;
+}
+
+.excel-section-title {
+    font-weight: bold;
+    background-color: #e9ecef;
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+}
+
+.excel-merged-cell {
+    background-color: #f9f9f9;
+}
+
+/* Career History Styles */
+.career-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+.career-history-table th,
+.career-history-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.career-history-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.career-period {
+    white-space: nowrap;
+}
+
+.career-overview {
+    width: 40%;
+}
+
+.career-position {
+    width: 20%;
+}
+
+.career-scale {
+    width: 10%;
+    text-align: center;
+}
+
+.career-responsibilities,
+.career-tech-environment {
+    padding: 10px;
+}
+
+/* Task Matrix Styles */
+.task-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+}
+
+.task-matrix th,
+.task-matrix td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.task-matrix th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.task-matrix .task-name {
+    text-align: left;
+    font-weight: normal;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: white;
+    }
+    
+    .container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+    
+    .preview-actions,
+    header nav,
+    footer {
+        display: none;
+    }
+    
+    .preview-container {
+        border: none;
+        padding: 0;
+        box-shadow: none;
+    }
+}
