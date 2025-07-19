@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!file) return;
             
             // ファイル形式チェック
-            if (!file.name.endsWith('.xlsx')) {
-                alert('XLSXファイルを選択してください。');
+            if (!file.name.endsWith('.json')) {
+                alert('JSONファイルを選択してください。');
                 fileInput.value = '';
                 return;
             }

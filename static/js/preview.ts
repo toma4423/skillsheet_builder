@@ -1,9 +1,12 @@
+console.log("PREVIEW_JS_LOADED_V_20240719_1");
+
 /**
  * SkillSheet Builder - Preview Page JavaScript
  * Handles preview display and JSON generation
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOMContentLoaded fired");
     // DOM要素の取得
     const previewContent = document.getElementById('previewContent');
     const downloadJsonBtn = document.getElementById('downloadJsonBtn');
@@ -226,6 +229,7 @@ function generatePreviewHTML(data) {
  * JSONファイルをダウンロード
  */
 function downloadJson() {
+    console.log("downloadJson called");
     const previewData = sessionStorage.getItem('previewData');
     if (!previewData) {
         alert('データが見つかりません。');

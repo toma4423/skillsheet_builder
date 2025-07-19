@@ -401,40 +401,16 @@ function submitForm() {
     // フォームデータの収集
     const formData = collectFormData();
 
-    // ローディング表示
-    previewBtn.disabled = true;
-    previewBtn.textContent = 'プレビュー生成中...';
-
-    // APIにデータを送信
-    fetch('/api/preview', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('プレビューの生成に失敗しました。');
-        }
-        return response.json();
-    })
-    .then(data => {
+    try {
         // プレビューデータをセッションストレージに保存
-        sessionStorage.setItem('previewData', JSON.stringify(data));
+        sessionStorage.setItem('previewData', JSON.stringify(formData));
 
         // プレビューページへリダイレクト
         window.location.href = '/preview';
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert(error.message || 'プレビューの生成に失敗しました。');
-    })
-    .finally(() => {
-        // ボタンを元に戻す
-        previewBtn.disabled = false;
-        previewBtn.textContent = 'プレビュー表示';
-    });
+    } catch (error) {
+        console.error('Error saving data to session storage:', error);
+        alert('プレビューデータの保存に失敗しました。');
+    }
 }
 
 /**
