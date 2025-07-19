@@ -23,18 +23,23 @@ jobs:
         curl -LsSf https://astral.sh/uv/install.sh | sh
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
     - name: Install dependencies
-      run: uv sync --dev
+      run: |
+        uv sync --dev
     - name: Add venv to PATH
       run: |
         echo ".venv/bin" >> $GITHUB_PATH
     - name: Debug: List current directory
-      run: ls -la
+      run: |
+        ls -la
     - name: Debug: List .venv/bin directory
-      run: ls -la .venv/bin
+      run: |
+        ls -la .venv/bin
     - name: Debug: Print PATH
-      run: echo $PATH
+      run: |
+        echo $PATH
     - name: Run tests and generate coverage report
-      run: .venv/bin/pytest --cov=. --cov-report=term-missing
+      run: |
+        .venv/bin/pytest --cov=. --cov-report=term-missing
     - name: Display coverage summary
       run: |
         echo "::notice title=Coverage Summary::"
