@@ -1,20 +1,20 @@
 /**
  * SkillSheet Builder - Preview Page JavaScript
- * Handles preview display and XLSX generation
+ * Handles preview display and JSON generation
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM要素の取得
     const previewContent = document.getElementById('previewContent');
-    const downloadXlsxBtn = document.getElementById('downloadXlsxBtn');
+    const downloadJsonBtn = document.getElementById('downloadJsonBtn');
     const backToEditBtn = document.getElementById('backToEditBtn');
     
     // セッションストレージからプレビューデータを読み込む
     loadPreviewData();
     
-    // XLSXダウンロードボタンのイベントリスナー
-    if (downloadXlsxBtn) {
-        downloadXlsxBtn.addEventListener('click', downloadXlsx);
+    // JSONダウンロードボタンのイベントリスナー
+    if (downloadJsonBtn) {
+        downloadJsonBtn.addEventListener('click', downloadJson);
     }
     
     // 編集に戻るボタンのイベントリスナー
@@ -223,9 +223,9 @@ function generatePreviewHTML(data) {
 }
 
 /**
- * XLSXファイルをダウンロード
+ * JSONファイルをダウンロード
  */
-function downloadXlsx() {
+function downloadJson() {
     const previewData = sessionStorage.getItem('previewData');
     if (!previewData) {
         alert('データが見つかりません。');
@@ -233,7 +233,7 @@ function downloadXlsx() {
     }
     
     // ボタンを無効化
-    const downloadBtn = document.getElementById('downloadXlsxBtn');
+    const downloadBtn = document.getElementById('downloadJsonBtn');
     if (downloadBtn) {
         downloadBtn.disabled = true;
         downloadBtn.textContent = 'ファイル生成中...';
@@ -249,7 +249,7 @@ function downloadXlsx() {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('XLSXファイルの生成に失敗しました。');
+            throw new Error('JSONファイルの生成に失敗しました。');
         }
         return response.blob();
     })
@@ -258,7 +258,7 @@ function downloadXlsx() {
         const now = new Date();
         const dateStr = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
         const timeStr = `${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}`;
-        const fileName = `職務経歴書_${dateStr}_${timeStr}.xlsx`;
+        const fileName = `skillsheet_${dateStr}_${timeStr}.json`;
         
         // ダウンロードリンクの作成
         const url = window.URL.createObjectURL(blob);
@@ -277,13 +277,13 @@ function downloadXlsx() {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert(error.message || 'XLSXファイルの生成に失敗しました。');
+        alert(error.message || 'JSONファイルの生成に失敗しました。');
     })
     .finally(() => {
         // ボタンを元に戻す
         if (downloadBtn) {
             downloadBtn.disabled = false;
-            downloadBtn.textContent = 'XLSX出力';
+            downloadBtn.textContent = 'JSON出力';
         }
     });
 }
