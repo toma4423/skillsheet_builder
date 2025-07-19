@@ -240,7 +240,7 @@ function downloadJson() {
     }
     
     // APIにリクエスト
-    fetch('/api/generate-xlsx', {
+    fetch('/api/export-json', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
