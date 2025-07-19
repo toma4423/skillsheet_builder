@@ -25,8 +25,11 @@ jobs:
     - name: Install dependencies
       run: uv sync --dev
     - name: Run tests and generate coverage report
-      run: uv run pytest --cov=. --cov-report=term-missing
+      run: |
+        source .venv/bin/activate
+        pytest --cov=. --cov-report=term-missing
     - name: Display coverage summary
       run: |
         echo "::notice title=Coverage Summary::"
-        uv run pytest --cov=. --cov-report=term-missing | grep "TOTAL"
+        source .venv/bin/activate
+        pytest --cov=. --cov-report=term-missing | grep "TOTAL"
