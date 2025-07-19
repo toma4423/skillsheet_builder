@@ -20,25 +20,16 @@ jobs:
       with:
         python-version: "3.11"
         
-    - name: Install uv
+    - name: Install dependencies with pip
       run: |
-        curl -LsSf https://astral.sh/uv/install.sh | sh
-        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        python -m pip install --upgrade pip
+        pip install fastapi uvicorn jinja2 python-multipart pydantic
+        pip install pytest httpx pytest-cov
         
-    - name: Install dependencies
+    - name: Run tests
       run: |
-        uv sync --dev
-        
-    - name: Debug: Check uv environment
-      run: |
-        uv --version
-        ls -la
-        uv run python --version
-        
-    - name: Run tests with uv run
-      run: |
-        uv run pytest --cov=. --cov-report=term-missing --cov-report=xml
+        pytest --cov=. --cov-report=term-missing --cov-report=xml
         
     - name: Display coverage summary
       run: |
-        uv run coverage report --show-missing
+        coverage report --show-missing
