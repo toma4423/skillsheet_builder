@@ -27,8 +27,8 @@ jobs:
     - name: Add venv to PATH
       run: echo ".venv/bin" >> $GITHUB_PATH
     - name: Run tests and generate coverage report
-      run: pytest --cov=. --cov-report=term-missing
+      run: .venv/bin/pytest --cov=. --cov-report=term-missing
     - name: Display coverage summary
       run: |
         echo "::notice title=Coverage Summary::"
-        pytest --cov=. --cov-report=term-missing | grep "TOTAL"
+        .venv/bin/pytest --cov=. --cov-report=term-missing | grep "TOTAL"
