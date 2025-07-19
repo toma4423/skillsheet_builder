@@ -24,12 +24,11 @@ jobs:
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
     - name: Install dependencies
       run: uv sync --dev
+    - name: Add venv to PATH
+      run: echo "::add-path::.venv/bin"
     - name: Run tests and generate coverage report
-      run: |
-        source .venv/bin/activate
-        pytest --cov=. --cov-report=term-missing
+      run: pytest --cov=. --cov-report=term-missing
     - name: Display coverage summary
       run: |
         echo "::notice title=Coverage Summary::"
-        source .venv/bin/activate
         pytest --cov=. --cov-report=term-missing | grep "TOTAL"
