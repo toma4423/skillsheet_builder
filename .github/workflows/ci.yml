@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: uv sync --dev
     - name: Add venv to PATH
-      run: echo "::add-path::.venv/bin"
+      run: echo ".venv/bin" >> $GITHUB_PATH
     - name: Run tests and generate coverage report
       run: pytest --cov=. --cov-report=term-missing
     - name: Display coverage summary
