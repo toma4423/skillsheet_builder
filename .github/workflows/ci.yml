@@ -26,8 +26,7 @@ jobs:
       run: |
         uv sync --dev
     - name: Add venv to PATH
-      run: |
-        echo ".venv/bin" >> $GITHUB_PATH
+      run: echo "PATH=$(pwd)/.venv/bin:$PATH" >> $GITHUB_ENV
     - name: Debug: List current directory
       run: |
         ls -la
