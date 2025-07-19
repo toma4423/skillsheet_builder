@@ -75,6 +75,12 @@ docker build -t skillsheet-builder .
 docker run -p 8000:8000 skillsheet-builder
 ```
 
+   開発中にソースコードの変更を即座に反映させたい場合は、以下のコマンドでコンテナを起動します。
+
+```bash
+docker run -p 8000:8000 -v .:/app skillsheet-builder
+```
+
 3. ブラウザで http://localhost:8000 にアクセス
 
 ## 使用方法
