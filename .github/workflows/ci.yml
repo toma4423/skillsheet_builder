@@ -29,10 +29,13 @@ jobs:
       run: |
         uv sync --dev
         
-    - name: Run tests and generate coverage report
+    - name: Activate virtual environment and run tests
       run: |
-        .venv/bin/pytest --cov=. --cov-report=term-missing --cov-report=xml
+        source .venv/bin/activate
+        which pytest
+        pytest --cov=. --cov-report=term-missing --cov-report=xml
         
     - name: Display coverage summary
       run: |
-        .venv/bin/coverage report --show-missing
+        source .venv/bin/activate
+        coverage report --show-missing
