@@ -25,7 +25,8 @@ jobs:
     - name: Install dependencies
       run: uv sync --dev
     - name: Add venv to PATH
-      run: echo ".venv/bin" >> $GITHUB_PATH
+      run: |
+        echo ".venv/bin" >> $GITHUB_PATH
     - name: Debug: List current directory
       run: ls -la
     - name: Debug: List .venv/bin directory
