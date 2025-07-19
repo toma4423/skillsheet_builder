@@ -231,61 +231,34 @@ function downloadJson() {
         alert('データが見つかりません。');
         return;
     }
-    
-    // ボタンを無効化
-    const downloadBtn = document.getElementById('downloadJsonBtn');
-    if (downloadBtn) {
-        downloadBtn.disabled = true;
-        downloadBtn.textContent = 'ファイル生成中...';
-    }
-    
-    // APIにリクエスト
-    fetch('/api/export-json', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: previewData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('JSONファイルの生成に失敗しました。');
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        // ファイル名の生成（現在の日時を含む）
+
+    try {
+        // JSONデータをBlobとして作成
+        const blob = new Blob([previewData], { type: 'application/json' });
+
+        // ファイル名の生成
         const now = new Date();
         const dateStr = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
         const timeStr = `${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}`;
         const fileName = `skillsheet_${dateStr}_${timeStr}.json`;
-        
-        // ダウンロードリンクの作成
+
+        // ダウンロードリンクを作成してクリック
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
         a.download = fileName;
-        
-        // リンクをクリックしてダウンロード
         document.body.appendChild(a);
         a.click();
-        
+
         // クリーンアップ
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert(error.message || 'JSONファイルの生成に失敗しました。');
-    })
-    .finally(() => {
-        // ボタンを元に戻す
-        if (downloadBtn) {
-            downloadBtn.disabled = false;
-            downloadBtn.textContent = 'JSON出力';
-        }
-    });
+
+    } catch (error) {
+        console.error('Error creating JSON file:', error);
+        alert('JSONファイルの生成に失敗しました。');
+    }
 }
 
 /**
